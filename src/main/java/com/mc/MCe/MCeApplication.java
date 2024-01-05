@@ -78,20 +78,10 @@ public class MCeApplication {
 		Element element = (Element) document.getElementsByTagName(name).item(0);
 		NodeList children = element.getChildNodes();
 
-		//getChild(children, 0);
+		getChild(children, 0);
 
 
-		for (int i = 0; i < children.getLength(); i++) {
-			Node child = children.item(i);
-			if (child.getNodeType() == Node.ELEMENT_NODE) {
-				System.out.println(child.getNodeName());
-				Element e = (Element) child.getChildNodes();
-				Node n = e.getElementsByTagName("obi:Kod").item(0);
-				System.out.println(n.getNodeName() + " " + n.getTextContent());
 
-			}
-			//get(element);
-		}
 	}
 
 	static void get(Document document, String name, List<String> list){
@@ -124,7 +114,7 @@ public class MCeApplication {
 			// Check if the child is an element node
 
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
-				//System.out.print(child.getNodeName() + " -> ");
+				System.out.print(child.getNodeName() + " -> ");
 
 				if (child.getChildNodes().getLength() > 1)
 					getChild(child.getChildNodes(), in + 1);
