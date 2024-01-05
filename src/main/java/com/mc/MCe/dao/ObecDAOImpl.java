@@ -45,7 +45,7 @@ public class ObecDAOImpl implements ObecDAO{
             System.out.println("No Obce found for id: " + code);
             return null;
         } else {
-            System.out.println("ID is: "+resultList.get(0).getId());
+            System.out.println("ID is: "+resultList.get(0).getCode());
             return resultList.get(0);
         }
     }

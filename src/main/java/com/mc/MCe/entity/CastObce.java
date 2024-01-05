@@ -6,10 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "CastObce")
 public class CastObce {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "VARCHAR(255)")
-    private Integer id;
-
     @Column(name="Kod")
     private Integer code;
 
@@ -29,18 +25,9 @@ public class CastObce {
     }
 
     public CastObce(int code, String name, Obec villageCode) {
-        this.id = id;
         this.code = code;
         this.name = name;
         this.villageCode = villageCode;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getCode() {
@@ -69,6 +56,6 @@ public class CastObce {
 
     @Override
     public String toString() {
-        return "ID: " + id + " code: " + code + " name: " + name;
+        return " code: " + code + " name: " + name;
     }
 }

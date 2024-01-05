@@ -55,4 +55,8 @@ public class CastiObciAdd {
     public void setVillageCode(int villageCode) {
         this.villageCode = villageCode;
     }
+
+    public static CastiObciAdd createCastiObcei(int code, String name, Integer villageCode){
+        return new CastiObciAdd(code, name, villageCode);
+    }
 }
