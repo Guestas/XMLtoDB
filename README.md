@@ -5,8 +5,8 @@
 * If database doesn't exist app will create one in src/main/database with .sql file extension.
 
 ## Description
-Start the app is simple start main/java/com/mc/MCe/MainApplicationXMLtoDB.java. After starting app it asks if you 
-want to update data if they are already in database. (y for update n for not updating just adding).
+Start app: main file is in main/java/com/mc/MCe/MainApplicationXMLtoDB.java. After starting app it asks if you 
+want to update data if they are already in database. (y for update n for just adding without updating existing).
 
 App has basic testing which is in tests/java/com/mc/MCe/MainApplicationXMLtoDBTests.
 
