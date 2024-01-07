@@ -11,9 +11,9 @@ import java.util.List;
 
 @Service
 public class CastObceServiceImpl implements CastObceService {
+    //connecting main with database functions which are in dao file
     private final ObecDAO obecDAO;
     private final CastObceDAO castObceDAO;
-
     @Autowired
     public CastObceServiceImpl(ObecDAO obecDAO, CastObceDAO castObceDAO){
         this.obecDAO = obecDAO;

@@ -69,7 +69,7 @@ class MainApplicationXMLtoDBTests {
 	//testing adding "cast obce" to db with villageCode which not in obce DB should work ok without problem
 	@Test
 	void testSaveAndRetrieveCastiObce0() {
-		CastiObciAdd castiObciAdd = CastiObciAdd.createCastiObcei(11, "Cast Obce0", 5, true);
+		CastiObciAdd castiObciAdd = CastiObciAdd.createCastiObce(11, "Cast Obce0", 5, true);
 
 		CastObce castObce = castiObciAdd.getCastObcewithoutVilageCode();
 		castObceDAO.addCastObce(castObce);
@@ -83,7 +83,7 @@ class MainApplicationXMLtoDBTests {
 	//testing adding "cast obce" to db with village which is null to DB should work ok without problem
 	@Test
 	void testSaveAndRetrieveCastiObce1() {
-		CastiObciAdd castiObciAdd = CastiObciAdd.createCastiObcei(12, "Cast Obce1", 45, true);
+		CastiObciAdd castiObciAdd = CastiObciAdd.createCastiObce(12, "Cast Obce1", 45, true);
 
 		CastObce castObce = castiObciAdd.getCastObcewithoutVilageCode();
 		castObceDAO.addCastObce(castObce);
@@ -104,7 +104,7 @@ class MainApplicationXMLtoDBTests {
 		Obec obec = Obec.createObec("Obec2", 153, true);
 		obecDAO.addObec(obec);
 
-		CastiObciAdd castiObciAdd = CastiObciAdd.createCastiObcei(13, "Cast Obce2", 153, true);
+		CastiObciAdd castiObciAdd = CastiObciAdd.createCastiObce(13, "Cast Obce2", 153, true);
 
 		CastObce castObce = castiObciAdd.getCastObcewithoutVilageCode();
 		castObce.setVillageCode(obecDAO.getObecByCode(153));
@@ -121,11 +121,11 @@ class MainApplicationXMLtoDBTests {
 	@Test
 	public void testGetAllCastiObce() {
 		CastObce castObce1 = CastiObciAdd
-				.createCastiObcei(1, "Test3co1", 4, true)
+				.createCastiObce(1, "Test3co1", 4, true)
 				.getCastObcewithoutVilageCode();
 
 		CastObce castObce2 = CastiObciAdd
-				.createCastiObcei(2, "Test3co2", 4, true)
+				.createCastiObce(2, "Test3co2", 4, true)
 				.getCastObcewithoutVilageCode();
 
 		List<CastObce> expectedObecList = Arrays.asList(castObce1, castObce2);

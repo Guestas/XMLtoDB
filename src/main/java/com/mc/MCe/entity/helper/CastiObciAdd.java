@@ -3,6 +3,7 @@ package com.mc.MCe.entity.helper;
 import com.mc.MCe.entity.CastObce;
 
 public class CastiObciAdd {
+    //this class helps with adding new data to database if i need CastObce and from table Obce load Obec for conect tables together
     private Integer id;
 
     private Integer code;
@@ -67,7 +68,7 @@ public class CastiObciAdd {
         this.up = up;
     }
 
-    public static CastiObciAdd createCastiObcei(int code, String name, Integer villageCode, boolean up){
+    public static CastiObciAdd createCastiObce(int code, String name, Integer villageCode, boolean up){
         return new CastiObciAdd(code, name, villageCode, up);
     }
 }

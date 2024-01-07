@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 public class ObecServiceImpl implements ObecService {
+    //connecting main with database functions which are in dao file
 
     private final ObecDAO obecDAO;
-
     @Autowired
     public ObecServiceImpl(ObecDAO obecDAO){
         this.obecDAO = obecDAO;

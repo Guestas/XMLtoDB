@@ -14,6 +14,7 @@ import java.util.List;
 
 @Repository
 public class ObecDAOImpl implements ObecDAO{
+    // These functions handle writing and loading data from/to DB
 
     protected static final Logger logger = LogManager.getLogger(XMLdataServiceImpl.class);
 
@@ -59,7 +60,6 @@ public class ObecDAOImpl implements ObecDAO{
             logger.warn("No Obce found for id: " + code);
             return null;
         } else {
-            //System.out.println("ID is: "+resultList.get(0).getCode());
             return resultList.get(0);
         }
     }

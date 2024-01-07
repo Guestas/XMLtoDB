@@ -25,6 +25,9 @@ import java.util.zip.ZipInputStream;
 @Service
 public class XMLdataServiceImpl implements XMLdataService{
 
+    // in this class I defined downloading data from web unziping them it is in first method and second method is for parsing them
+    //
+
     protected static final Logger logger = LogManager.getLogger(XMLdataServiceImpl.class);
 
     @Override
@@ -53,6 +56,8 @@ public class XMLdataServiceImpl implements XMLdataService{
         return null;
     }
 
+    // this method get document, name what will be used for extraction and elements which will be saved to database.
+    //function returns all extracted values in list
     @Override
     public List<Map<String, String>> agregateData(Document document, String name, List<String> list) {
         List<Map<String, String>> out = new ArrayList<>();
@@ -60,6 +65,7 @@ public class XMLdataServiceImpl implements XMLdataService{
         Element elemen = (Element) document.getElementsByTagName(name).item(0);
         NodeList children = elemen.getChildNodes();
 
+        // this cycle going through all elements for example CastiObce there is 5 of them and get needed data by tag name
         for (int i = 0; i < children.getLength(); i++) {
             Map<String, String> elementMap = new HashMap<>();
             Node child = children.item(i);

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "CastObce")
 public class CastObce {
+
+    //defining entity data for database and their naming boolean up is for updating which is defined by user
     @Id
     @Column(name="Kod")
     private Integer code;

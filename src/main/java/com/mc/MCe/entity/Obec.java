@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="Obec")
 public class Obec {
-
+//defining entity data for database and their naming boolean up is for updating which is defined by user
     @Id
     @Column(name="Kod", columnDefinition = "INT")
     private Integer code;
