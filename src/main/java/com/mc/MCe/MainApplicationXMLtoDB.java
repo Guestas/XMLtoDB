@@ -9,34 +9,33 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.w3c.dom.Document;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootApplication
-public class MCeApplication {
+public class MainApplicationXMLtoDB {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(MCeApplication.class, args);
+		SpringApplication.run(MainApplicationXMLtoDB.class, args);
 
 	}
 	@Bean
+	@Profile("dev")
 	public CommandLineRunner commandLineRunner(ObecService obecService, CastObceService castObceService, XMLdataService xmLdataService){
 		return runner -> {
-/*
+			System.out.println("If data in DB already exist update them? [y/n]");
 			Scanner scanner = new Scanner(System.in);
-			String name = scanner.nextLine();
-			System.out.println(name);*/
+			boolean up = Character.compare(scanner.nextLine().toLowerCase().charAt(0), 'y')==0;
 
 
 			Document document = xmLdataService.downloadData("https://www.smartform.cz/download/kopidlno.xml.zip");
+			if (document==null){
+				return;
+			}
 
-			// Process the XML document as needed
-			long startTime = System.currentTimeMillis();
 
 			List<String> nededObce = new ArrayList<>(Arrays.asList("obi:Kod","obi:Nazev"));
 			List<Map<String,String>> ouut = xmLdataService.agregateData(document, "vf:Obce", nededObce);
@@ -45,40 +44,28 @@ public class MCeApplication {
 			List<String> nededCastiObce = new ArrayList<>(Arrays.asList("coi:Kod","coi:Nazev","obi:Kod"));
 			ouut.addAll(xmLdataService.agregateData(document, "vf:CastiObci", nededCastiObce));
 
-			System.out.println(System.currentTimeMillis()-startTime);
 
 			ouut.forEach(data -> {
 				//System.out.println(data.get("name").split(":")[1]);
-
 				switch (data.get("name")) {
 					case "vf:Obec" ->
 							obecService.addObec(Obec.createObec(
 									data.get("obi:Nazev"),
-									Integer.parseInt(data.get("obi:Kod"))
+									Integer.parseInt(data.get("obi:Kod")),
+									up
 							));
 
 					case "vf:CastObce" ->
 							castObceService.addCastObce(CastiObciAdd.createCastiObcei(
 									Integer.parseInt(data.get("coi:Kod")),
 									data.get("coi:Nazev"),
-									Integer.parseInt(data.get("obi:Kod"))
+									Integer.parseInt(data.get("obi:Kod")),
+									up
 							));
 					default -> System.out.println("Nothing to find");
 				}
-
-
-
-				System.out.println(data);
+				//System.out.println(data);
 			});
-
-
-
-			//Obec o = new Obec("Name", 1562);
-			//obecService.addObec(o);
-			//System.out.println(obecService.getAllObce());
-
-			//System.out.println(castObceService.addCastObce(new CastiObciAdd(5,"asdf",1563)));
-			//castObceService.getCastObceByCode(4);
 		};
 	}
 }

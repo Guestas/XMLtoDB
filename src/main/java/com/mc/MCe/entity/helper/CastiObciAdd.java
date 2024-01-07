@@ -11,17 +11,20 @@ public class CastiObciAdd {
 
     private int villageCode;
 
+    private boolean up;
+
     public CastiObciAdd() {
     }
 
-    public CastiObciAdd(Integer code, String name, int villageCode) {
+    public CastiObciAdd(Integer code, String name, int villageCode,boolean up ) {
         this.code = code;
         this.name = name;
         this.villageCode = villageCode;
+        this.up = up;
     }
 
     public CastObce getCastObcewithoutVilageCode(){
-        return new CastObce(code, name);
+        return new CastObce(code, name, up);
     }
 
     public Integer getId() {
@@ -56,7 +59,15 @@ public class CastiObciAdd {
         this.villageCode = villageCode;
     }
 
-    public static CastiObciAdd createCastiObcei(int code, String name, Integer villageCode){
-        return new CastiObciAdd(code, name, villageCode);
+    public boolean getUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public static CastiObciAdd createCastiObcei(int code, String name, Integer villageCode, boolean up){
+        return new CastiObciAdd(code, name, villageCode, up);
     }
 }

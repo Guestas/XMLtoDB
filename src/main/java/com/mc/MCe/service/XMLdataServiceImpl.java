@@ -7,6 +7,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,25 +25,32 @@ import java.util.zip.ZipInputStream;
 @Service
 public class XMLdataServiceImpl implements XMLdataService{
 
+    protected static final Logger logger = LogManager.getLogger(XMLdataServiceImpl.class);
+
     @Override
     public Document downloadData(String urlS) throws IOException, ParserConfigurationException, SAXException {
-        URL url = new URL(urlS);
-        InputStream stream = url.openStream();
+        try {
+            URL url = new URL(urlS);
+            try  {
+                InputStream stream = url.openStream();
+                ZipInputStream zipInputStream = new ZipInputStream(stream);
 
-        ZipInputStream zipInputStream = new ZipInputStream(stream);
+                // get file from zip folder
+                zipInputStream.getNextEntry();
 
-        // get file from zip folder
-        zipInputStream.getNextEntry();
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = dbf.newDocumentBuilder();
 
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = dbf.newDocumentBuilder();
-
-        Document document = docBuilder.parse(zipInputStream);
-        // Close the input streams
-        zipInputStream.close();
-
-        // Parse the XML file from the ZIP
-        return document;
+                Document document = docBuilder.parse(zipInputStream);
+                // Parse the XML file from the ZIP
+                return document;
+            } catch (Exception in){
+                in.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

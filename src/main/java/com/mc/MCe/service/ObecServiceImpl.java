@@ -19,7 +19,6 @@ public class ObecServiceImpl implements ObecService {
 
     @Override
     public Obec addObec(Obec obec) {
-
         return obecDAO.addObec(obec);
     }
 

@@ -16,18 +16,23 @@ public class CastObce {
     @JoinColumn(name="Kod_Obce")
     private Obec villageCode;
 
+    @Transient
+    private boolean up;
+
     public CastObce() {
     }
 
-    public CastObce(int code, String name) {
+    public CastObce(int code, String name, boolean up) {
         this.code = code;
         this.name = name;
+        this.up = up;
     }
 
-    public CastObce(int code, String name, Obec villageCode) {
+    public CastObce(int code, String name, Obec villageCode, boolean up) {
         this.code = code;
         this.name = name;
         this.villageCode = villageCode;
+        this.up = up;
     }
 
     public int getCode() {
@@ -54,8 +59,16 @@ public class CastObce {
         this.villageCode = villageCode;
     }
 
+    public boolean getUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
     @Override
     public String toString() {
-        return " code: " + code + " name: " + name;
+        return "CastObce code: " + code + " name: " + name;
     }
 }

@@ -13,13 +13,17 @@ public class Obec {
     @Column(name="Nazev", columnDefinition = "VARCHAR(255)")
     private String name;
 
+    @Transient
+    boolean up;
+
 
     public Obec() {
     }
 
-    public Obec(String name, Integer code) {
+    public Obec(String name, Integer code, boolean up) {
         this.name = name;
         this.code = code;
+        this.up = up;
     }
 
     public String getName() {
@@ -38,7 +42,19 @@ public class Obec {
         this.code = code;
     }
 
-    public static Obec createObec(String name, Integer code){
-        return new Obec(name, code);
+    public static Obec createObec(String name, Integer code, boolean up){
+        return new Obec(name, code, up);
+    }
+
+    public boolean getUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public String toString() {
+        return "Obec code: " + code + " name: " + name;
     }
 }
