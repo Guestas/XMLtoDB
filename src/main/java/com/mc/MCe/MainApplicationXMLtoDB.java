@@ -1,7 +1,7 @@
 package com.mc.MCe;
 
+import com.mc.MCe.entity.CastObce;
 import com.mc.MCe.entity.Obec;
-import com.mc.MCe.entity.helper.CastiObciAdd;
 import com.mc.MCe.service.CastObceService;
 import com.mc.MCe.service.ObecService;
 import com.mc.MCe.service.XMLdataService;
@@ -62,7 +62,7 @@ public class MainApplicationXMLtoDB {
 							));
 
 					case "vf:CastObce" ->
-							castObceService.addCastObce(CastiObciAdd.createCastiObce(
+							castObceService.addCastObce(CastObce.createCastObce(
 									Integer.parseInt(data.get("coi:Kod")),
 									data.get("coi:Nazev"),
 									Integer.parseInt(data.get("obi:Kod")),

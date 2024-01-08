@@ -3,7 +3,6 @@ package com.mc.MCe.service;
 import com.mc.MCe.dao.CastObceDAO;
 import com.mc.MCe.dao.ObecDAO;
 import com.mc.MCe.entity.CastObce;
-import com.mc.MCe.entity.helper.CastiObciAdd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +20,14 @@ public class CastObceServiceImpl implements CastObceService {
     }
 
     @Override
-    public CastObce addCastObce(CastiObciAdd castiObciAdd) {
-        CastObce o = castiObciAdd.getCastObcewithoutVilageCode();
-        o.setVillageCode(obecDAO.getObecByCode(castiObciAdd.getVillageCode()));
-        return castObceDAO.addCastObce(o);
+    public CastObce addCastObce(CastObce castObce) {
+        castObce.setVillageCode(obecDAO.getObecByCode(castObce.getVillageCodeNumber()));
+        return castObceDAO.addCastObce(castObce);
     }
 
     @Override
     public List<CastObce> getAllCastiObce() {
-        return null;
+        return castObceDAO.getAllCastiObce();
     }
 
     @Override

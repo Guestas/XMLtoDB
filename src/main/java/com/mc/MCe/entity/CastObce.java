@@ -15,11 +15,16 @@ public class CastObce {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="Kod_Obce")
-    private Obec villageCode;
+    @JoinColumn(name="Kod_Obce", referencedColumnName = "Kod")
+    private Obec villageCodeObec;
+
+    @Transient
+    private int villageCodeNumber;
 
     @Transient
     private boolean up;
+
+
 
     public CastObce() {
     }
@@ -30,10 +35,17 @@ public class CastObce {
         this.up = up;
     }
 
-    public CastObce(int code, String name, Obec villageCode, boolean up) {
+    public CastObce(int code, String name, Obec villageCodeObec, boolean up) {
         this.code = code;
         this.name = name;
-        this.villageCode = villageCode;
+        this.villageCodeObec = villageCodeObec;
+        this.up = up;
+    }
+
+    public CastObce(int code, String name, int villageCodeNumber, boolean up) {
+        this.code = code;
+        this.name = name;
+        this.villageCodeNumber = villageCodeNumber;
         this.up = up;
     }
 
@@ -54,11 +66,11 @@ public class CastObce {
     }
 
     public Obec getVillageCode() {
-        return villageCode;
+        return villageCodeObec;
     }
 
-    public void setVillageCode(Obec villageCode) {
-        this.villageCode = villageCode;
+    public void setVillageCode(Obec villageCodeObec) {
+        this.villageCodeObec = villageCodeObec;
     }
 
     public boolean getUp() {
@@ -67,6 +79,22 @@ public class CastObce {
 
     public void setUp(boolean up) {
         this.up = up;
+    }
+
+    public int getVillageCodeNumber() {
+        return villageCodeNumber;
+    }
+
+    public void setVillageCodeNumber(int villageCodeNumber) {
+        this.villageCodeNumber = villageCodeNumber;
+    }
+
+    public static CastObce createCastObce(int code, String name, Obec villageCodeObec, boolean up){
+        return new CastObce(code, name, villageCodeObec, up);
+    }
+
+    public static CastObce createCastObce(int code, String name, Integer villageCodeNumber, boolean up){
+        return new CastObce(code, name, villageCodeNumber, up);
     }
 
     @Override
